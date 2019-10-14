@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-md-8 text-left">
+      <h4 class="pt-4 pb-2" style="color:#1da9f4"> User Managment</h4>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group has-feedback">
+        <div class="row">
+          <div class="col-md-12 pt-4 pb-2">
+            <!-- <input type="text" class="form-control" 
+                [ngStyle]="{'background': '#f8f8f8'}" placeHolder="Serach" [(ngModel)]="searchString" /> -->
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [ngStyle]="{'background': '#f8f8f8'}"
+              [(ngModel)]="query" />
+            <i class="fa fa-search form-control-feedback" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <br>
+      </div>
+      <!-- <form >
+              <div class="form-group pt-4 pb-2">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="searchString"
+                    placeholder="Type to search..."
+                    [(ngModel)]="query"
+                  />
+                </div>
+              </div>
+            </form> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+        <div class="p-2">
+          <button type="button" (click)=" openSm()" class="btn btn-warning" style="color:#fff;font-size:10px;">
+            Create
+            <i class="fa fa-plus" style="color:#fff;"></i>
+          </button>
+        </div>
+        <form #userlogin="ngForm" class="form-horizontal">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-highlight">
+              <thead>                
+                <th>Sl.No</th>
+                <th>Name</th>
+                <th>Password</th>
+                <th>Mobile number</th>
+                <th>Action</th>
+              </thead>
+              <tbody>                
+                <tr *ngFor="let userdata of result | LockFilter: query | paginate: { itemsPerPage: 9, currentPage: p };let i = index">
+                 <td> {{ 9 * (p - 1) + i +1}}</td>
+                  <td>
+                    <input type="text" [disabled]="!userdata.display" #username="ngModel" class="form-control" [(ngModel)]="userdata.name" [ngModelOptions]="{standalone: true}"
+                      [name]="userdata.name" required [value]="userdata.name" />
+                  </td>
+                  <td>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <input id="password" [disabled]="!userdata.display" #userpassowrd="ngModel" [name]="userdata.password" [(ngModel)]="userdata.password"
+                          [ngModelOptions]="{standalone: true}" required [type]="showPassword.checked ? 'text' : 'password'"
+                          class="form-control" [name]="userdata.password" [value]="userdata.password">&nbsp; &nbsp;
+                      </div>
+                      <div class="col-md-4">
+                        <mat-checkbox #showPassword>
+                          <span style="font-size:10px"> Show password</span>
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <input disabled type="text" #usermobile="ngModel" disabled class="form-control" [(ngModel)]="userdata.mobile_number" [ngModelOptions]="{standalone: true}"
+                      [value]="userdata.mobile_number" required [name]="userdata.mobile_number" />
+                  </td>
+                  <td>
+     <button type="button" #InnerHtml (click)="userdata.display = !userdata.display; update(userdata,$event)" class="btn btn-warning " style="color:#fff;padding-right:20px;padding-left:20px;border: none;">EDIT</button>
+     <button type="button" *ngIf="userdata.cancel" (click)="cancel($event,InnerHtml,userdata)" class="btn btn-warning " style="color:#fff;padding-right:20px;padding-left:20px;border: none;">CANCEL</button>          
+      <!-- <button type="button" (click)="userdata.display = !userdata.display; update(userdata,$event,index,i)" class="btn btn-warning " *ngIf ="hideEditBtn == true;" style="color:#fff;padding-right:20px;padding-left:20px;border: none;" >Edit</button>
+                    <button type="button" (click)="userdata.display = !userdata.display; update(userdata,$event)" class="btn btn-warning "  *ngIf ="hideUpdateBtn == true" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Update</button>
+                    <button type="button" (click)="userdata.display = !userdata.display ;cancel($event)" *ngIf ="hideCancelBtn == true" class="btn btn-warning" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Cancel</button>
+                  -->
+                  </td>
+                </tr>
+                <tr *ngIf = "(result |LockFilter: query).length ===0" class="text-center"><p>No data to show</p></tr>
+                  <!-- <div *ngIf="result?.length == 0">
+                    <p>No RECORDS TO FOUND</p>
+                  </div> -->
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-md-12">
+            <div style="text-align:right">
+              <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"   directionLinks="true" screenReaderCurrentLabel="You're on page" class="my-pagination">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+      <br>
+      <app-alerts></app-alerts>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showLoadingIndicator" class="lds-spinner">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>

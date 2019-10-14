@@ -1,0 +1,108 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin:100px 0px;
+ */
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+.background{
+  /* background-image:url("../assets/images/bbb.jpg") !important; */
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  background-size:contain;
+  /* https://wallpapers-house.com/data/out/21/wallpaper2you_8554.jpg */
+}
+
+::ng-deep .mat-card-header{
+  background-color:red !important;
+  padding:5px !important;
+}
+
+::ng-deep .mat-card{
+  padding:0 !important;
+}
+
+::ng-deep .mat-card-content{
+  padding:5px !important;
+}
+/* .bg-img
+{
+  background-image: url('https://prmceam.ac.in/wp-content/uploads/2017/05/background-learner1.jpg');
+  background-position: center;
+  background-repeat: no-repeat; 
+} */
+
+.container{
+  width:100% !important;
+  height:auto;
+}
+
+.background {
+  width: 100%;
+  height: 100vh;
+  background: url("https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547__340.jpg") no-repeat;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header,
+section,
+footer {
+  margin: 0;
+  padding: 1px; /* tweaked from 0 to 1px */
+}
+/* div{
+  overflow: -webkit-paged-x;
+ } */
+.control-label{
+  color: #7d827d;
+ }  
+
+ input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+border: none;
+-webkit-text-fill-color: #000;
+-webkit-box-shadow: 0 0 0px 1000px #fff inset;
+transition: background-color 5000s ease-in-out 0s;
+}
+
+.mat-input-element {
+padding-left: 32px;
+padding-top: 9px;
+}

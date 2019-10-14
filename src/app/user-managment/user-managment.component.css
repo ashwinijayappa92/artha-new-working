@@ -1,0 +1,56 @@
+th,td{
+    font-size:14px
+}
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 4px 4px 4px 4px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+table{
+    width:100%
+}
+.my-pagination /deep/ .ngx-pagination .current {
+    background: rgb(129, 202, 224);
+ }
+ .form-control-feedback{
+    line-height: 59px !important;
+ }
+ 
+ ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  /* body{
+  overflow: -webkit-paged-y;
+   }  */
+   .container-fluid{
+     width:100%
+   }
+   .container{
+     width:100%
+   }
+
+   .error {
+    color: rgb(223, 62, 62);
+    font-size: 11px;
+  }
+  .error1 {
+    color: rgb(75, 75, 75);
+    border-bottom: 1px solid #ff0000;
+  }
+.btn-info{
+  background-color:#2a3344a1;
+}

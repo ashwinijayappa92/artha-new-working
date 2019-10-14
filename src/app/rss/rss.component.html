@@ -1,0 +1,111 @@
+<div class="container-fluid">
+  <div class="row ml-auto mr-auto ">
+    <div class="col-md-8 text-left">
+      <h4 class="pt-4 pb-2" style="color:#1da9f4"> RSS</h4>
+
+    </div>
+    <div class="col-md-4">
+      <div class="form-group has-feedback">
+
+        <div class="row">
+          <div class="col-md-12 pt-4 pb-2">
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [ngStyle]="{'background': '#f8f8f8'}"
+              [(ngModel)]="query" />
+            <i class="fa fa-search form-control-feedback" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+     <mat-card><div class="p-2">
+        <button type="button" (click)=" openLg()" class="btn btn-warning" style="color:#fff;font-size:10px;">
+          Create
+          <i class="fa fa-plus" style="color:#fff;"></i>
+        </button></div>
+        <form [formGroup]="rssForm"  class="form-horizontal">
+          <div class="table-responsive">
+
+            <table class="table table-bordered table-striped table-highlight">
+              <thead>
+                <th>Sl.No</th>
+                <th>Categories</th>
+                <th>Language</th>
+                <th>Links</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let userdata of result | LockFilter: query | paginate: { itemsPerPage: 5, currentPage: p };let i = index">
+                  <td>{{i+1}}</td>
+                  <td>
+                    <input type="text" [disabled]="!userdata.display" name="category" class="form-control" [(ngModel)]="userdata.category" [ngModelOptions]="{standalone: true}"
+                      required >
+                    
+                  </td>
+                  <td contenteditable='false'>
+                    <select name="userdata" [disabled]="!userdata.display" (change)="selectchange(userdata.category,$event)" required class="form-control">
+                      <option value="" selected> Select Language</option>
+
+                      <option *ngFor="let user of userdata.details; let i=index;" [value]="user.language">
+                        {{user.language}}
+                      </option>
+                    </select>
+                  </td>
+
+                  <td>
+                    <div *ngFor="let user of userdata.details" [id]="(userdata.category+user.language).trim()" class="hidethisdiv">
+
+                      <input type="text"  class="form-control" name="links" [(ngModel)]="user.links" [disabled]="!userdata.display"[ngModelOptions]="{standalone: true}"
+                         required  [ngModelOptions]="{standalone: true}">
+
+                    </div>
+                  </td>
+                  <td>
+                      <button type="button" (click)="userdata.display = !userdata.display; update(userdata,$event)" class="btn btn-warning " *ngIf ="hideEditBtn == true" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Edit</button>
+                      <button type="button" (click)="userdata.display = !userdata.display; update(userdata,$event)" class="btn btn-warning "  *ngIf ="hideUpdateBtn == true" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Update</button>
+                      <button type="button" (click)="userdata.display = !userdata.display ;cancel($event)" *ngIf ="hideCancelBtn == true" class="btn btn-warning" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Cancel</button>
+                    <!-- <button type="button" (click)="userdata.display = !userdata.display;update(userdata,$event)" class="btn btn-warning " style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Edit</button> -->
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-md-12">
+            <div style="text-align:right">
+              <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true" class="my-pagination">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <br>
+      <app-alerts></app-alerts>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div *ngIf="showLoadingIndicator" class="lds-spinner">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>

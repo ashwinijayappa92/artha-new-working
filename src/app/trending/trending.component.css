@@ -1,0 +1,13 @@
+th,td{
+    font-size:12px
+}
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 4px 4px 4px 4px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+.my-pagination /deep/ .ngx-pagination .current {
+    background: rgb(129, 202, 224);
+ }
+ .form-control-feedback{
+    line-height: 59px !important;
+ }
+ 

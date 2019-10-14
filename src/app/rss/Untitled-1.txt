@@ -1,0 +1,18 @@
+  let uniquearr = [];
+         let newResultMain =temp.map(element => {
+             
+            let t = uniquearr.findIndex( v=> {
+                 if(v == element.category){
+                   return false;
+                 }
+                 return true;
+            });
+            if(t == -1 ){
+                uniquearr.push(element.category);
+                element.display = false;
+                return element;
+            }
+            else{
+              return false;
+            }
+          })

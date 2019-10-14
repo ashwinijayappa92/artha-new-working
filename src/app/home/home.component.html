@@ -1,0 +1,171 @@
+ <!-- <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <app-header></app-header>
+      </div>
+    </div>
+    <div class="row" style="margin-right:0px;margin-left:0px">
+      <div class="col-md-3">
+      <div class="sidebar" style="display:none;height:100% !important" #navbaricons>
+          <a href="javascript:void(0)" class="closebtnicons" (click)="opennav()">
+            <i class="fa fa-angle-right" style="font-size:24px"></i></a>
+          <a routerLink="dashboard">
+            <i class="fa fa-dashboard fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+          <a routerLink="user-management">
+            <i class="fa fa-user fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+          <a routerLink="create-list">
+            <i class="fa fa-list fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+          <a routerLink="twitter">
+            <i class="fa fa-user fa-lg" style="color:#fff"></i>
+          </a>
+          <a routerLink="shedule">
+            <i class="fa fa-calendar fa-lg" aria-hidden="true" style="color:#fff"> </i>
+          </a>
+          <a routerLink="lang">
+            <i class="fa fa-language fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+          <a routerLink="digital-key">
+            <i class="fa fa-laptop fa-lg" style="color:#fff"></i>
+          </a>
+          <a routerLink="rss">
+            <i class="fa fa-rss fa-lg" style="color:#fff" aria-hidden="true"></i>
+          </a>
+          <a routerLink="trending">
+            <i class="fa fa-line-chart fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+  
+  
+        </div>
+        <div *ngIf="loggedIn" class="sidebar" (scroll)="onWindowScroll($event);" style="z-index: 999;width:250px" #navbar>
+          <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"><i class="fa fa-angle-left"
+              style="font-size:24px"></i></a>
+          <a routerLink="dashboard">
+            <i class="fa fa-dashboard fa-lg" aria-hidden="true" style="color:#fff"></i> &nbsp; &nbsp;Dashboard
+          </a>
+          <a routerLink="user-management">
+            <i class="fa fa-user fa-lg" aria-hidden="true" style="color:#fff"></i>&nbsp;&nbsp;User Management
+          </a>
+          <a routerLink="create-list">
+            <i class="fa fa-list fa-lg" aria-hidden="true" style="color:#fff"></i>&nbsp;&nbsp; Create Category
+          </a>
+          <a routerLink="twitter">
+            <i class="fa fa-twitter fa-lg" style="color:#fff" aria-hidden="true"></i> &nbsp; &nbsp;Twitter
+          </a>
+          <a routerLink="shedule">
+            <i class="fa fa-calendar fa-lg" aria-hidden="true" style="color:#fff"> </i>&nbsp;&nbsp; Sheduler Config
+          </a>
+          <a routerLink="lang">
+            <i class="fa fa-language fa-lg" aria-hidden="true" style="color:#fff"></i>&nbsp;&nbsp; Language
+          </a>
+          <a routerLink="digital-key">
+            <i class="fa fa-laptop fa-lg" style="color:#fff"></i>&nbsp;&nbsp;Digital Keyword
+          </a>
+          <a routerLink="rss">
+            <i class="fa fa-rss fa-lg" style="color:#fff" aria-hidden="true"></i>&nbsp;&nbsp;Rss
+          </a>
+          <a routerLink="trending">
+            <i class="fa fa-line-chart fa-lg" aria-hidden="true" style="color:#fff"></i> &nbsp;&nbsp;Trending
+          </a>
+        </div>
+  
+      </div>
+    </div>
+  
+  
+    <div class="col-md-10" #mainBar>
+      <router-outlet></router-outlet>
+    </div>
+  
+  </div> -->
+
+
+
+ 
+
+
+
+   <div class="container-fluid">
+    <div class="row">
+      <div class="col-12" style="padding:0px">
+        <app-header></app-header>
+      </div>
+    </div>
+    <div class="row" style="margin-right:0px;margin-left:0px">
+      <div class="col-2">
+     
+        <div class="sidebar" style="display:none;height:100% !important" #navbaricons>
+          <a href="javascript:void(0)" class="closebtnicons" (click)="opennav()">
+            <i class="fa fa-angle-right" style="font-size:24px"></i></a>
+          <a routerLink="dashboard">
+            <i class="fa fa-dashboard fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+          <a routerLink="user-management">
+            <i class="fa fa-user fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+          <a routerLink="create-list">
+            <i class="fa fa-list fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+          <a routerLink="twitter">
+            <i class="fa fa-user fa-lg" style="color:#fff"></i>
+          </a>
+          <a routerLink="shedule">
+            <i class="fa fa-calendar fa-lg" aria-hidden="true" style="color:#fff"> </i>
+          </a>
+          <a routerLink="lang">
+            <i class="fa fa-language fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+          <a routerLink="digital-key">
+            <i class="fa fa-laptop fa-lg" style="color:#fff"></i>
+          </a>
+          <a routerLink="rss">
+            <i class="fa fa-rss fa-lg" style="color:#fff" aria-hidden="true"></i>
+          </a>
+          <a routerLink="trending">
+            <i class="fa fa-line-chart fa-lg" aria-hidden="true" style="color:#fff"></i>
+          </a>
+  
+  
+        </div>
+        <div *ngIf="loggedIn" class="sidebar" (scroll)="onWindowScroll($event);" style="z-index: 999;width:200px" #navbar>
+          <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"><i class="fa fa-angle-left"
+              style="font-size:24px"></i></a>
+          <a routerLink="dashboard">
+            <i class="fa fa-dashboard fa-lg" aria-hidden="true" style="color:#fff"></i> &nbsp; &nbsp;Dashboard
+          </a>
+          <a routerLink="user-management">
+            <i class="fa fa-user fa-lg" aria-hidden="true" style="color:#fff"></i>&nbsp;&nbsp;User Management
+          </a>
+          <a routerLink="create-list">
+            <i class="fa fa-list fa-lg" aria-hidden="true" style="color:#fff"></i>&nbsp;&nbsp; Create Category
+          </a>
+          <a routerLink="twitter">
+            <i class="fa fa-twitter fa-lg" style="color:#fff" aria-hidden="true"></i> &nbsp; &nbsp;Twitter
+          </a>
+          <a routerLink="shedule">
+            <i class="fa fa-calendar fa-lg" aria-hidden="true" style="color:#fff"> </i>&nbsp;&nbsp; Sheduler Config
+          </a>
+          <a routerLink="lang">
+            <i class="fa fa-language fa-lg" aria-hidden="true" style="color:#fff"></i>&nbsp;&nbsp; Language
+          </a>
+          <a routerLink="digital-key">
+            <i class="fa fa-laptop fa-lg" style="color:#fff"></i>&nbsp;&nbsp;Digital Keyword
+          </a>
+          <a routerLink="rss">
+            <i class="fa fa-rss fa-lg" style="color:#fff" aria-hidden="true"></i>&nbsp;&nbsp;Rss
+          </a>
+          <a routerLink="trending">
+            <i class="fa fa-line-chart fa-lg" aria-hidden="true" style="color:#fff"></i> &nbsp;&nbsp;Trending
+          </a>
+        </div>
+
+        </div>
+
+        <div  class="col-10" #mainBar>
+        <router-outlet></router-outlet>
+         </div>
+    
+    </div>
+  </div>

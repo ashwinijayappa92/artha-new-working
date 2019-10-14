@@ -1,0 +1,28 @@
+th,td{
+    font-size:12px;
+    color:#000;
+}
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 4px 4px 4px 4px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+.my-pagination /deep/ .ngx-pagination .current {
+    background: rgb(129, 202, 224);
+ }
+ ::-webkit-scrollbar {
+    width: 5px;
+    height: auto;
+}
+::-webkit-scrollbar-track-piece {
+    background:rgb(233, 230, 230);
+}
+::-webkit-scrollbar-thumb {
+    background:#5cbbf2;
+}  
+.form-control-feedback{
+    line-height: 59px !important;
+ }
+ 
+ 

@@ -1,0 +1,160 @@
+<div class="container-fluid">
+  <div class="row ml-auto mr-auto ">
+    <div class="col-md-8 text-left">
+      <h4 class="pt-4 pb-2" style="color:#1da9f4"> Sheduler Configuration</h4>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group has-feedback">
+
+        <div class="row">
+          <div class="col-md-12 pt-4 pb-2">
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [ngStyle]="{'background': '#f8f8f8'}"
+              [(ngModel)]="query" />
+            <i class="fa fa-search form-control-feedback" aria-hidden="true"></i>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card><div class="p-2">
+        <button type="button" (click)=" openSm()" class="btn btn-warning" style="color:#fff;font-size:10px;">
+          Create
+          <i class="fa fa-plus" style="color:#fff;"></i>
+        </button></div>
+        <form [formGroup]="categoryForm" class="form-horizontal" >
+          <div class="table-responsive" formGroupName=userData>
+           <table class="table table-bordered table-striped table-highlight">
+              <thead>
+                <th>Sl.No</th>
+                <th>Module Name</th>
+                <th>Time Interval</th>
+                <th>Status</th>
+                <th>Category</th>
+                <th>Action</th>
+
+              </thead>
+              <tbody>
+                <tr *ngFor="let userdata of result | LockFilter: query | paginate: { itemsPerPage: 5, currentPage: p };let i = index">
+                  <td> {{ 9 * (p - 1) + i +1}}</td> 
+                  <td>
+                    <input type="text" [disabled] ="" formControlName="userdata.module_name" class="form-control" 
+                      [value]="userdata.module_name" required [name]="userdata.module_name"
+                    />
+                  </td>
+                  <td>
+                    <input type="text" [disabled]="!userdata.display" formControlName="userdata.time_interval" onkeypress="return (event.charCode == 8 || event.charCode == 0 || 
+                    event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 
+                    57"  onpaste="return false" class="form-control" 
+                       [value]="userdata.time_interval" required [name]="userdata.time_interval"
+                    />
+                  </td>
+                  <td>
+                      <select [disabled]="!userdata.display" required [name]="userdata.status" [ngModelOptions]="{standalone: true}"  class="form-control" name="name" place  [(ngModel)]="userdata.status">
+                          <option [ngValue]="undefined" disabled   selected> Please select </option>
+                        <option value="enable" >
+                         Enable
+                        </option>
+                        <option value="disable">
+                            Disable
+                          </option>
+                       </select>
+
+                    <!-- <input type="text" [disabled]="!userdata.display" #userActive="ngModel" class="form-control" [(ngModel)]="userdata.status"
+                      [ngModelOptions]="{standalone: true}" [value]="userdata.status" required [name]="userdata.status" /> -->
+                  </td>
+                  <td>
+                    <!-- <div *ngFor="let user of userdata.category">{{user}} -->
+                      <!-- <input *ngIf="userdata.display" type="text" [disabled]="!userdata.display"  class="form-control" [(ngModel)]="user.category"
+                        [ngModelOptions]="{standalone: true}" [name]="user.category" required [value]="user.category" /> -->
+                        <!-- <div *ngIf="userdata.display">  {{userdata.category |json}}
+                        <select    [name]="user.category" [(ngModel)]="user.category"  required #username="ngModel" class="form-control" > 
+                          <option  selected>select Languages</option>
+                          <option [value]="user" *ngFor="let user of userdata.category">{{user}}</option>
+                          </select>
+                        </div> -->
+                    <div *ngIf="!userdata.display">
+                      <span *ngFor="let user of userdata.category">
+                        {{user.category | titlecase}}
+                        <br />
+                      </span>
+                    </div>
+                    <div *ngIf="userdata.display">
+                        <!-- <ng-select [items]="category"                        
+                        bindLabel="category"
+                        bindValue="category"
+                        [multiple]="true"                    
+                        [(ngModel)]="nrSelect"
+                        [disabled]="userdata.display">
+             </ng-select> -->
+
+                   <ng-multiselect-dropdown
+                  [placeholder]="'custom placeholder'"
+                  [data]="category"
+                  [(ngModel)]="user"
+                  [settings]="categorySettings"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)"
+                  (onDeSelect)="onItemDeSelect($event)"
+                  [name]="userdata.status"
+                  [ngModelOptions]="{standalone: true}"
+                >
+                </ng-multiselect-dropdown>
+             
+                       <!-- <select  class="form-control"  place [(ngModel)]="user" required>
+                          <option  [ngValue]="undefined" disabled   selected> Please select </option>
+                        <option [value]=user.value  *ngFor="let user of category" >
+                          {{user.category}}                           
+                        </option>
+                       </select>   -->
+                      </div>
+                       <!-- <label>Multiselect with custom bindings</label>  --> 
+                       <!-- <p>
+                           Selected cities: {{user.category}}
+                       </p> -->
+                       <!-- <hr /> -->
+                   
+                  </td>
+                  <td contenteditable='false'>
+<!--  <button type="button" (click)="userdata.display = !userdata.display; update(userdata,$event)" class="btn btn-warning " *ngIf ="hideEditBtn == true" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Edit</button>
+                      <button type="button" (click)="userdata.display = !userdata.display; update(userdata,$event)" class="btn btn-warning "  *ngIf ="hideUpdateBtn == true" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Update</button> -->
+                      <button type="button" (click)="userdata.display = !userdata.display ;cancel($event)" *ngIf ="hideCancelBtn == true" class="btn btn-warning" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Cancel</button>
+                 <button type="button"  (click)="userdata.display = !userdata.display;update(userdata,$event)" class="btn btn-warning " style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Edit</button>
+                  </td>
+                </tr>
+                <tr *ngIf = "(result |LockFilter: query).length ===0"><p>No records to show</p></tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-md-12">
+            <div style="text-align:right">
+              <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true" class="my-pagination">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+      <br>
+      <app-alerts></app-alerts>
+    </div>
+  </div>
+</div>
+<div *ngIf="showLoadingIndicator" class="lds-spinner">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>

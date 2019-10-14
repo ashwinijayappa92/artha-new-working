@@ -1,0 +1,41 @@
+<body class="background" style="background-image:url('./assets/images/bbb.jpg')">
+  <div class="container-fluid">
+    <div class="row justify-content-md-center ">
+      <mat-card class="col-5 ">
+        <mat-card-title style="font-family: initial;  background-color: #ffbb33 !important;
+          padding: 8px !important; color: #fff;border-radius: 3px;">
+          <h4 style="font-weight:800; font-size: 25px;"> Wellcome! Sign In To Your Account</h4>
+        </mat-card-title>
+        <mat-card-content>
+          <form #userlogin="ngForm">
+            <mat-form-field>
+              <div class="form-group" [class.has-error]="number.invalid && number.touched"
+                [class.has-success]="username.valid">
+                &nbsp; &nbsp; <i class="fa fa-user" style="font-size:20px;color: #7d8285;"></i> &nbsp;&nbsp; <label
+                  for="name" class="control-label">Mobile number: &nbsp;</label>
+                &nbsp; &nbsp;<input type="text" matInput id="name" #number="ngModel" name="phone"
+                  [(ngModel)]="phoneNumber" pattern="^((\\+91-?)|0)?[0-9]{10}$"/>
+              </div>
+              <span style="color:red" class="help-block" *ngIf="number.invalid && number.touched">please enter valid 
+                number</span>
+            </mat-form-field>
+            <mat-form-field>
+              <div class="form-group" [class.has-error]="username.invalid && username.touched"
+                [class.has-success]="username.valid">
+                &nbsp; &nbsp;<i class="fa fa-lock" style="font-size:20px;    color: #7d8285;"></i> &nbsp; <label
+                  for="name" class="control-label">Password: &nbsp;</label>
+                &nbsp; &nbsp; <input type="password" matInput id="name" #username="ngModel" name="pass"
+                  [(ngModel)]="fullName" />
+              </div>
+              <span style="color:red" class="help-block" *ngIf="username.invalid && username.touched"> Password is
+                required</span>
+            </mat-form-field>
+            <button class="btn btn-warning pull-right" (click)="onClickSubmit(userlogin.value)"
+              [disabled]="userlogin.invalid" type="button">submit</button>
+          </form>
+          <span *ngIf="error">{{error}}</span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <div class="row ml-auto mr-auto ">
+    <div class="col-md-8 text-left">
+      <h4 class="pt-4 pb-2" style="color:#1da9f4"> Language</h4>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group has-feedback">
+        <div class="row">
+          <div class="col-md-12 pt-4 pb-2">
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [ngStyle]="{'background': '#f8f8f8'}"
+              [(ngModel)]="query" />
+            <i class="fa fa-search form-control-feedback" aria-hidden="true"></i>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-card><div class="p-2">
+        <button type="button" (click)=" openSm()" class="btn btn-warning" style="color:#fff;font-size:10px;">
+          Create
+          <i class="fa fa-plus" style="color:#fff;"></i>
+        </button>
+        </div>
+        <form #userlogin="ngForm" class="form-horizontal">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-highlight">
+              <thead>
+                <th>Sl.No</th>
+                <th>Languages</th>
+                <th>Language Code</th>
+              </thead>
+              <tbody #editTable>
+                <tr *ngFor="let userdata of result | LockFilter: query | paginate: { itemsPerPage: 5, currentPage: p };let i = index">
+                  <td> {{ 9 * (p - 1) + i +1}}</td>
+                   <td>
+                    <input type="text" disabled #username="ngModel" class="form-control" [(ngModel)]="userdata.language_name" [ngModelOptions]="{standalone: true}"
+                      [name]="userdata.language_name" required [value]="userdata.name"  />
+                  </td>
+                  <td>
+                    <input type="text" disabled #username="ngModel" class="form-control" [(ngModel)]="userdata.language_code" [ngModelOptions]="{standalone: true}"
+                      [name]="userdata.language_name" required [value]="userdata.name" />
+                  </td>
+                </tr>
+                <tr *ngIf = "(result |LockFilter: query).length ===0"><p>No records to show</p></tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-md-12">
+            <div style="text-align:right">
+              <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true" class="my-pagination">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <br>
+      <app-alerts></app-alerts>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div *ngIf="showLoadingIndicator" class="lds-spinner">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>

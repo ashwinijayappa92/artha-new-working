@@ -1,0 +1,206 @@
+<div class="container-fluid">
+  <div class="row ml-auto mr-auto ">
+    <div class="col-md-8 text-left">
+      <h4 class="pt-4 pb-2" style="color:#1da9f4"> Twitter</h4>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group has-feedback">
+
+        <div class="row">
+          <div class="col-md-12 pt-4 pb-2">
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..."
+              [ngStyle]="{'background': '#f8f8f8'}" [(ngModel)]="query" />
+            <i class="fa fa-search form-control-feedback" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+        <button type="button" (click)=" openSm()" class="btn btn-warning" style="color:#fff;font-size:10px;">
+          Create
+          <i class="fa fa-plus" style="color:#fff;"></i>
+        </button>
+        <form #userlogin="ngForm" class="form-horizontal">
+          <div class="table-responsive">
+
+            <table class="table table-bordered table-striped table-highlight">
+              <thead>
+                <th>Sl.No</th>
+                <th>Categories</th>
+                <th>Accounts</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let userdata of result | LockFilter: query | paginate: { itemsPerPage: 5, currentPage: p };let i = index">
+                  <td> {{ 9 * (p - 1) + i +1}}</td>
+
+                  <td>
+                    <input type="text" disabled #username="ngModel" class="form-control" [(ngModel)]="userdata.category"
+                      [ngModelOptions]="{standalone: true}" [name]="userdata.category" required
+                      [value]="userdata.category" />
+                  </td>
+
+                  <td>
+                    <input type="text" *ngIf="userdata.display" #usermobile="ngModel" class="form-control"
+                      [(ngModel)]="userdata.accounts" [ngModelOptions]="{standalone: true}" [value]="userdata.accounts"
+                      required [name]="userdata.accounts" />
+                    <div *ngIf="!userdata.display">
+                      <span *ngFor="let ggg of userdata.accounts">
+                        <a [href]="ggg" target="_blank"> {{ggg |titlecase}}</a>
+                        <br />
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <!-- <button type="button" #InnerHtml  (click)="userdata.display = !userdata.display; update(userdata,$event)" class="btn btn-warning " style="color:#fff;padding-right:20px;padding-left:20px;border: none;"> EDIT </button>
+                    -->
+
+                    <button type="button" #InnerHtml
+                      (click)="userdata.display = !userdata.display;update(userdata,$event)" class="btn btn-warning "
+                      style="color:#fff;padding-right:20px;padding-left:20px;border: none;">EDIT</button>
+
+                    <button type="button" *ngIf="userdata.cancel" (click)="cancel($event,InnerHtml,userdata)"
+                      class="btn btn-warning "
+                      style="color:#fff;padding-right:20px;padding-left:20px;border: none;">CANCEL</button>
+
+
+                    <!-- <button type="button" (click)="userdata.display = !userdata.display; update(userdata,$event)" class="btn btn-warning "  *ngIf ="hideUpdateBtn == true" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Update</button>
+                    <button type="button" (click)="userdata.display = !userdata.display ;cancel($event)" *ngIf ="hideCancelBtn == true" class="btn btn-warning" style="color:#fff;padding-right:20px;padding-left:20px;border: none;">Cancel</button> -->
+
+                  </td>
+                </tr>
+                <tr *ngIf="(result |LockFilter: query).length ===0" class="text-center">
+                  <p>No data to show</p>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-md-12">
+            <div style="text-align:right">
+              <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true" class="my-pagination">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <br>
+      <app-alerts></app-alerts>
+    </div>
+  </div>
+
+
+</div>
+<div *ngIf="showLoadingIndicator" class="lds-spinner">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+ <!-- <div class="modal-header" style="background-color:#2a3344a1;display: block;">
+    <h4 style="color:#fff; "> Create twitter</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="twitterForm">
+
+  
+      <div  formArrayName="twitter" *ngFor="let prod of twitterForm.get('twitter').controls; let i=index"
+        class="row form-content-labels">
+
+        <div [formGroupName]="i" class="col-md-12">
+          <table style="width: 100%"><tr><td>
+          <label for="name" class="control-label">Twitter: &nbsp;</label>
+        
+          <input type="text" formControlName="twitter1" style="border: 1px solid #ccc;" autocomplete="off" class="form-control"
+            placeholder="User Name"
+            [class.has-error]="!prod.controls.twitter1.valid && prod.controls.twitter1.dirty" />
+  
+          <div style="color:red"
+            *ngIf="(prod.get('twitter1').hasError('required') || prod.get('twitter1').hasError('pattern') || prod.get('twitter1').hasError('minlength') || prod.get('twitter1').hasError('maxlength') ) && prod.get('twitter1').touched ">
+            <div class="has-error"
+              *ngIf="(prod.get('twitter1').hasError('required') )&& prod.get('twitter1').touched">
+              name is empty
+            </div>
+            <div class="has-error"
+              *ngIf="prod.get('twitter1').hasError('minlength') && prod.get('twitter1').touched">
+              Minimum 4 characters
+            </div>
+            <div class="has-error"
+              *ngIf="twitterForm.get('twitter1').hasError('maxlength') && twitterForm.get('twitter1').touched">
+              Maximum 30 characters
+            </div>
+           </div>
+            </td>
+            <td>
+                <div *ngIf="twitterForm.get('twitter').length>1">
+                    <i class="fa fa-trash" style="cursor: pointer;color: #b80920;"
+                    name="close" (click)="removePro(i)" style="font-size:20px;    color: #7d8285;"></i>
+                  </div>
+            </td>
+            </tr>
+            </table>
+          </div>
+
+  
+        </div>
+    
+      <div class="row">
+          <div style="text-align: right" class="float-right">
+            <span style="color:red; font-size:14px"></span>&emsp;
+            <a class="my-label" style="cursor:pointer;text-decoration:underline" (click)="addMoreTwitter()">Add more product</a>
+          </div>
+      </div>
+  
+      
+  
+      <div class="form-group" class="form-content-labels">
+        <div class="col-md-6" *ngFor="let cat of category ">
+          <label class="radio-inline">
+            <input type="radio" [value]="cat.category" formControlName="category" [checked]="cat.checked"
+              (click)="cat.checked = !cat.checked; update(cat)" autocomplete="off" style="border: 1px solid #ccc;"
+              required 
+              [class.has-error]="!twitterForm.controls.category.valid && twitterForm.controls.category.dirty" />
+            &nbsp;{{cat.category}}
+          </label>
+        </div>
+  
+        <div style="color:red"
+          *ngIf="(twitterForm.get('category').hasError('required')) && twitterForm.get('category').touched ">
+          <div class="error"
+            *ngIf="(twitterForm.get('category').hasError('required') )&& twitterForm.get('category').touched">
+            Password is empty
+          </div>
+  
+        </div>
+      </div>
+  
+  
+  
+      <div class="modal-footer">
+        <button class="btn btn-info" style="background:#2e4a7b !important;font-size: 10px;"
+          (click)="userCreate();activeModal.close('Close click')" [disabled]="twitterForm.invalid"
+          type="submit">SUBMIT</button>
+        <button class="btn btn-info" (click)="activeModal.close('Close click')"
+          style="font-size: 10px;background-color: #909398 !important;">CANCEL</button>
+      </div>
+    </form>
+    
+  </div>  -->

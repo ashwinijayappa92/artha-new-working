@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <h4 style="color:#1da9f4"> Create Digital Keywords</h4>
+</div>
+  <div class="modal-body">
+ <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+<div class="form-group">
+            <label for="name" class="control-label">Keywords*:</label>
+            <input type="text"  class="form-control" formControlName="Keyword" [(ngModel)]="projectViewData.digitaldto.category" [ngClass]="{'is-invalid':form.get('Keyword').touched && form.get('Keyword').invalid}" required />
+            <div class="invalid-feedback">
+<span style="color:red" class="help-block">Keywords is required</span>
+            </div>
+          </div>
+          <div class="form-group" >
+            <label for="name" class="control-label">Category *: </label>
+          </div>
+            <div class="col-md-4 form-group"  *ngFor="let cat of category" >
+              <div>
+                  <!-- <input type="radio" name="cat" (click)="cat.category"
+  [checked]="cat.category">{{cat.category}}  -->
+   <input type="radio" name="options"   (click)="model.option = cat.category"
+  [checked]="cat.category">{{cat.category}} 
+
+                
+                     
+                   <!-- <div class="invalid-feedback"> -->
+                    
+<!-- <span style="color:red" class="help-block">Keywords is required</span> -->
+            <!-- </div> -->
+            </div> 
+            </div>
+         
+          <div class="form-group">
+            <button class="btn btn-primary"  [disabled]="!form.valid">Submit</button>
+            <button class="btn btn-primary" (ngSubmit)="close()"  mat-dialog-close  >cancel</button>
+          </div>  
+  </form>
+  </div>

@@ -1,0 +1,17 @@
+ [  {
+      'categoryName':'artha1',
+      keywords: ['Jhon','mary','sheeva','joseph','ashu']
+     
+     
+    },
+    {
+      categoryName:'artha2',
+      keywords: ['Jhon','mary','sheeva','joseph','ashu']
+     
+    },
+    {
+       categoryName:'artha3',
+      keywords: ['Jhon','mary','sheeva','joseph','ashu']
+     
+    }
+  ]
